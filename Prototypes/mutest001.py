@@ -4,3 +4,11 @@ This is the first prototype of Mutest, a mutation testing tool that helps evalua
 The goal of this prototype is to validate the parsing and mutation generation process and ensure the tool can reliably create mutants before integrating test execution, scoring, and reporting in later stages.
 
 """
+import ast
+import astor
+
+code = "x = 1 + 2"
+tree = ast.parse(code)
+
+print(ast.dump(tree, indent=4))  # Built-in
+print(astor.to_source(tree))     # Requires astor

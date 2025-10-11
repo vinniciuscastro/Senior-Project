@@ -1,0 +1,13 @@
+# === Core dependencies ===
+astor==0.8.1           # Easier AST manipulation and code generation
+pytest==8.3.3           # Framework for running tests
+
+# === Developer tools ===
+black==24.10.0          # Code formatting for consistency
+pytest-cov==5.0.0       # Test coverage analysis
+rich==13.9.1            # Nice console output and debugging
+
+# === Optional (future use) ===
+# typer==0.12.5          # For building a clean CLI (if you add commands later)
+# requests==2.32.3       # In case you later fetch data from APIs
+# pyyaml==6.0.2          # For reading/writing config files
