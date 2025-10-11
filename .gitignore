@@ -1,0 +1,9 @@
+# Ignore Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+# common ignores
+__pycache__/
+*.py[cod]
+.vscode/
