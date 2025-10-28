@@ -51,7 +51,7 @@ def run(source_file, test_command, report_format, output, verbose):
         mutest run utils.py "pytest" -f json -o results.json
     """
     click.echo("=" * 60)
-    click.echo(click.style("🧬 MUTEST - Mutation Testing", fg='cyan', bold=True))
+    click.echo(click.style("MUTEST - Mutation Testing", fg='cyan', bold=True))
     click.echo("=" * 60)
     click.echo()
 
@@ -61,7 +61,7 @@ def run(source_file, test_command, report_format, output, verbose):
 
     # If format not specified, prompt user
     if not report_format:
-        click.echo("📊 Select report format:")
+        click.echo("Select report format:")
         click.echo("  1. text  - Plain text report")
         click.echo("  2. html  - Interactive HTML report")
         click.echo("  3. json  - Machine-readable JSON report")
@@ -75,9 +75,9 @@ def run(source_file, test_command, report_format, output, verbose):
         click.echo()
 
     # Display configuration
-    click.echo(f"📄 Source file: {click.style(source_file, fg='green')}")
-    click.echo(f"🧪 Test command: {click.style(test_command, fg='green')}")
-    click.echo(f"📊 Report format: {click.style(report_format, fg='green')}")
+    click.echo(f"Source file: {click.style(source_file, fg='green')}")
+    click.echo(f"Test command: {click.style(test_command, fg='green')}")
+    click.echo(f"Report format: {click.style(report_format, fg='green')}")
     click.echo()
 
     # Read source code
@@ -85,18 +85,18 @@ def run(source_file, test_command, report_format, output, verbose):
         with open(source_file, 'r') as f:
             source_code = f.read()
     except Exception as e:
-        click.echo(click.style(f"❌ Error reading file: {e}", fg='red'), err=True)
+        click.echo(click.style(f"Error reading file: {e}", fg='red'), err=True)
         sys.exit(1)
 
     # Generate mutants
-    click.echo(click.style("🔬 Generating mutants...", fg='yellow'))
+    click.echo(click.style("Generating mutants...", fg='yellow'))
     generator = MutantGenerator()
     mutants = generator.generate_mutants(source_code)
-    click.echo(click.style(f"✓ Generated {len(mutants)} mutants", fg='green'))
+    click.echo(click.style(f"Generated {len(mutants)} mutants", fg='green'))
     click.echo()
 
     if len(mutants) == 0:
-        click.echo(click.style("⚠️  No mutations found. The source file may not have mutable operators.", fg='yellow'))
+        click.echo(click.style("No mutations found. The source file may not have mutable operators.", fg='yellow'))
         sys.exit(0)
 
     # Run mutation tests
@@ -108,18 +108,18 @@ def run(source_file, test_command, report_format, output, verbose):
     results = executor.run_mutation_tests(mutants)
 
     if not results:
-        click.echo(click.style("❌ Mutation testing failed. See errors above.", fg='red'), err=True)
+        click.echo(click.style("Mutation testing failed. See errors above.", fg='red'), err=True)
         sys.exit(1)
 
     # Display quick summary
     click.echo()
     click.echo("=" * 60)
-    click.echo(click.style("📊 QUICK SUMMARY", fg='cyan', bold=True))
+    click.echo(click.style("QUICK SUMMARY", fg='cyan', bold=True))
     click.echo("=" * 60)
     click.echo(f"Total Mutants: {results['total']}")
-    click.echo(click.style(f"✓ Killed: {results['killed_count']}", fg='green'))
-    click.echo(click.style(f"✗ Survived: {results['survived_count']}", fg='red' if results['survived_count'] > 0 else 'green'))
-    click.echo(f"⏱  Timeout: {results['timeout_count']}")
+    click.echo(click.style(f"Killed: {results['killed_count']}", fg='green'))
+    click.echo(click.style(f"Survived: {results['survived_count']}", fg='red' if results['survived_count'] > 0 else 'green'))
+    click.echo(f"Timeout: {results['timeout_count']}")
 
     score = results['mutation_score']
     score_color = 'green' if score >= 80 else 'yellow' if score >= 60 else 'red'
@@ -131,26 +131,26 @@ def run(source_file, test_command, report_format, output, verbose):
     if report_format in ['text', 'all']:
         output_file = output or 'reports/mutest_report.txt'
         generate_text_report(results, output_file, source_file, test_command)
-        click.echo(f"✓ Text report saved: {click.style(output_file, fg='green')}")
+        click.echo(f"Text report saved: {click.style(output_file, fg='green')}")
 
     if report_format in ['html', 'all']:
         output_file = output or 'reports/mutest_report.html'
         generate_html_report(results, output_file, source_file, test_command)
-        click.echo(f"✓ HTML report saved: {click.style(output_file, fg='green')}")
+        click.echo(f"HTML report saved: {click.style(output_file, fg='green')}")
 
     if report_format in ['json', 'all']:
         output_file = output or 'reports/mutest_report.json'
         generate_json_report(results, output_file, source_file, test_command)
-        click.echo(f"✓ JSON report saved: {click.style(output_file, fg='green')}")
+        click.echo(f"JSON report saved: {click.style(output_file, fg='green')}")
 
     click.echo()
 
     # Exit with appropriate code
     if results['survived_count'] > 0:
-        click.echo(click.style("⚠️  Some mutants survived. Consider improving your tests!", fg='yellow'))
+        click.echo(click.style("Some mutants survived. Consider improving your tests!", fg='yellow'))
         sys.exit(0)  # Don't fail CI/CD, just warn
     else:
-        click.echo(click.style("🎉 All mutants killed! Great test coverage!", fg='green', bold=True))
+        click.echo(click.style("All mutants killed! Great test coverage!", fg='green', bold=True))
         sys.exit(0)
 
 
@@ -167,7 +167,7 @@ def preview(source_file):
         mutest preview math_utils.py
     """
     click.echo("=" * 60)
-    click.echo(click.style("🔍 MUTATION PREVIEW", fg='cyan', bold=True))
+    click.echo(click.style("MUTATION PREVIEW", fg='cyan', bold=True))
     click.echo("=" * 60)
     click.echo()
 

@@ -1,0 +1,44 @@
+"""
+Functions with loops that can cause timeouts when mutated.
+When comparison operators are mutated, loops can become infinite.
+"""
+
+def count_up_to(n):
+    """Count from 0 to n"""
+    count = 0
+    result = []
+    while count < n:  # If < is mutated to <=, >, or >=, this could loop forever
+        result.append(count)
+        count = count + 1  # If + is mutated to -, this becomes infinite
+    return result
+
+
+def sum_while_positive(numbers):
+    """Sum numbers while they are positive"""
+    total = 0
+    i = 0
+    while i < len(numbers):  # If < is mutated, could cause issues
+        if numbers[i] <= 0:  # If <= is mutated to <, might miss cases
+            break
+        total = total + numbers[i]  # If + is mutated to -, logic breaks
+        i = i + 1  # If + is mutated to -, infinite loop
+    return total
+
+
+def find_first_negative(numbers):
+    """Find index of first negative number"""
+    i = 0
+    while i < len(numbers):  # If < is mutated to <=, could access out of bounds
+        if numbers[i] < 0:  # If < is mutated to <=, might return wrong index
+            return i
+        i = i + 1  # If + is mutated to -, infinite loop
+    return -1
+
+
+def countdown(n):
+    """Countdown from n to 0"""
+    result = []
+    while n > 0:  # If > is mutated to >=, <, or <=, could loop forever
+        result.append(n)
+        n = n - 1  # If - is mutated to +, infinite loop
+    return result

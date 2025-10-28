@@ -1,18 +1,18 @@
-# === Core dependencies ===
-astor==0.8.1           # Easier AST manipulation and code generation
-pytest==8.3.3          # Framework for running tests
-click==8.1.7           # For building command-line interfaces
-jinja2==3.1.4          # Templating engine for code generation
-colorama==0.4.6        # Cross-platform colored terminal text
+# === Core dependencies (Required) ===
+astor==0.8.1           # AST manipulation and code generation for mutants
+pytest==8.3.3          # Testing framework (runs mutation tests)
+click==8.1.7           # CLI framework (used by cli.py)
 
-# === Developer tools ===
-black==24.10.0          # Code formatting for consistency
-pytest-cov==5.0.0       # Test coverage analysis
-rich==13.9.1            # Nice console output and debugging
+# === Developer tools (Recommended) ===
+black==24.10.0         # Code formatter for consistency
+pytest-cov==5.0.0      # Test coverage analysis
+colorama==0.4.6        # Cross-platform colored terminal text (for Windows)
 
-# === Optional (future use) ===
-typer==0.12.5          # For building a clean CLI (if you add commands later)
-requests==2.32.3       # In case you later fetch data from APIs
-pyyaml==6.0.2          # For reading/writing config files
+# === Optional dependencies ===
+# jinja2==3.1.4        # Templating engine (not currently used)
+# rich==13.9.1         # Rich console output (not currently used)
+# typer==0.12.5        # Alternative CLI framework (not currently used)
+# requests==2.32.3     # HTTP requests (not currently used)
+# pyyaml==6.0.2        # YAML config files (not currently used)
 
 
