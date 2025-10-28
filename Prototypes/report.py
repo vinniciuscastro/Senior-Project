@@ -10,7 +10,7 @@ def generate_text_report(results, output_file, source_file, test_command):
     """Generate a detailed text report of mutation testing results"""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    with open(output_file, 'w') as f:
+    with open(output_file, 'w', encoding='utf-8') as f:
         f.write("=" * 70 + "\n")
         f.write("MUTEST - MUTATION TESTING REPORT\n")
         f.write("=" * 70 + "\n\n")
@@ -427,7 +427,7 @@ def generate_html_report(results, output_file, source_file, test_command):
 </body>
 </html>"""
 
-    with open(output_file, 'w') as f:
+    with open(output_file, 'w', encoding='utf-8') as f:
         f.write(html_content)
 
 
@@ -456,5 +456,5 @@ def generate_json_report(results, output_file, source_file, test_command):
         }
     }
 
-    with open(output_file, 'w') as f:
-        json.dump(report_data, f, indent=2)
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(report_data, f, indent=2, ensure_ascii=False)

@@ -55,6 +55,25 @@ def run(source_file, test_command, report_format, output, verbose):
     click.echo("=" * 60)
     click.echo()
 
+    # Create reports directory if it doesn't exist
+    reports_dir = Path('reports')
+    reports_dir.mkdir(exist_ok=True)
+
+    # If format not specified, prompt user
+    if not report_format:
+        click.echo("📊 Select report format:")
+        click.echo("  1. text  - Plain text report")
+        click.echo("  2. html  - Interactive HTML report")
+        click.echo("  3. json  - Machine-readable JSON report")
+        click.echo("  4. all   - Generate all formats")
+        click.echo()
+        report_format = click.prompt(
+            'Choose format',
+            type=click.Choice(['text', 'html', 'json', 'all'], case_sensitive=False),
+            default='html'
+        )
+        click.echo()
+
     # Display configuration
     click.echo(f"📄 Source file: {click.style(source_file, fg='green')}")
     click.echo(f"🧪 Test command: {click.style(test_command, fg='green')}")
@@ -110,17 +129,17 @@ def run(source_file, test_command, report_format, output, verbose):
 
     # Generate reports
     if report_format in ['text', 'all']:
-        output_file = output or 'mutest_report.txt'
+        output_file = output or 'reports/mutest_report.txt'
         generate_text_report(results, output_file, source_file, test_command)
         click.echo(f"✓ Text report saved: {click.style(output_file, fg='green')}")
 
     if report_format in ['html', 'all']:
-        output_file = output or 'mutest_report.html'
+        output_file = output or 'reports/mutest_report.html'
         generate_html_report(results, output_file, source_file, test_command)
         click.echo(f"✓ HTML report saved: {click.style(output_file, fg='green')}")
 
     if report_format in ['json', 'all']:
-        output_file = output or 'mutest_report.json'
+        output_file = output or 'reports/mutest_report.json'
         generate_json_report(results, output_file, source_file, test_command)
         click.echo(f"✓ JSON report saved: {click.style(output_file, fg='green')}")
 
