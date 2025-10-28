@@ -450,8 +450,8 @@ if __name__ == "__main__":
     print("=" * 60)
 
     # Example usage with math_utils.py
-    source_file = "testing/simple_funcitons/math_utils.py"
-    test_command = "python -m pytest testing/tests/test_001.py -v"
+    source_file = "testing/simple_functions/math_utils.py"
+    test_command = "python -m pytest testing/unit_test/test_001.py -v"
 
     if len(sys.argv) > 1:
         source_file = sys.argv[1]
@@ -468,7 +468,7 @@ if __name__ == "__main__":
     except FileNotFoundError:
         print(f"Error: Could not find file '{source_file}'")
         print("\nUsage: python mutest001.py [source_file] [test_command]")
-        print("Example: python mutest001.py testing/simple_funcitons/math_utils.py \"pytest testing/tests/\"")
+        print("Example: python mutest001.py testing/simple_functions/math_utils.py \"pytest testing/unit_test/\"")
         sys.exit(1)
 
     # Generate mutants
