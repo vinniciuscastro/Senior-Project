@@ -3,7 +3,7 @@ import sys, pathlib
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 import pytest
-from simple_funcitons import math_utils, grade_utils, string_utils
+from simple_functions import math_utils, grade_utils, string_utils
 
 
 def test_add():
