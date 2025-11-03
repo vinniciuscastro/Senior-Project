@@ -32,11 +32,11 @@ def generate_text_report(results, output_file, source_file, test_command):
         f.write(f"Mutation Score:   {score:.2f}%\n\n")
 
         # Quality assessment
-        if score >= 80:
+        if score >= 97:
             f.write("Quality Assessment: EXCELLENT ✓\n")
-        elif score >= 60:
+        elif score >= 90:
             f.write("Quality Assessment: GOOD\n")
-        elif score >= 40:
+        elif score >= 80:
             f.write("Quality Assessment: FAIR\n")
         else:
             f.write("Quality Assessment: POOR ✗\n")
