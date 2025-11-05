@@ -85,7 +85,7 @@ def run(source_file, test_command, report_format, output, verbose):
         with open(source_file, 'r') as f:
             source_code = f.read()
     except Exception as e:
-        click.echo(click.style(f"Error reading file: {e}", fg='red'), err=True)
+        click.echo(click.style(f"❌ Error reading file: {e}", fg='red'), err=True)
         sys.exit(1)
 
     # Generate mutants
