@@ -10,7 +10,7 @@ def count_up_to(n):
     result = []
     while count < n:
         result.append(count)
-        count = count - 1
+        count = count + 1
     return result
 
 
