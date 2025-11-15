@@ -1,0 +1,72 @@
+======================================================================
+MUTEST - MUTATION TESTING REPORT
+======================================================================
+
+Generated: 2025-11-15 14:27:29
+Source File: testing/advanced_tests/test_weak_coverage.py
+Test Command: pytest testing/advanced_tests/test_weak_coverage.py -v
+
+======================================================================
+SUMMARY
+======================================================================
+
+Total Mutants:    6
+Killed:           5 (83.3%)
+Survived:         1 (16.7%)
+Timeout:          0 (0.0%)
+
+Mutation Score:   83.33%
+
+Quality Assessment: FAIR
+
+======================================================================
+KILLED MUTANTS (5)
+======================================================================
+
+Mutant #1:
+  Type:     ComparisonOperator
+  Location: Line 17, Column 11
+  Change:   Eq → NotEq
+  Status:   KILLED ✓
+
+Mutant #3:
+  Type:     ComparisonOperator
+  Location: Line 30, Column 11
+  Change:   Gt → Lt
+  Status:   KILLED ✓
+
+Mutant #4:
+  Type:     ComparisonOperator
+  Location: Line 30, Column 11
+  Change:   Gt → LtE
+  Status:   KILLED ✓
+
+Mutant #5:
+  Type:     ComparisonOperator
+  Location: Line 40, Column 11
+  Change:   Eq → NotEq
+  Status:   KILLED ✓
+
+Mutant #6:
+  Type:     ComparisonOperator
+  Location: Line 41, Column 11
+  Change:   Eq → NotEq
+  Status:   KILLED ✓
+
+======================================================================
+SURVIVED MUTANTS (1) - ACTION NEEDED!
+======================================================================
+
+These mutants were not detected by your tests. Consider adding
+test cases to cover these scenarios:
+
+Mutant #2:
+  Type:     ComparisonOperator
+  Location: Line 30, Column 11
+  Change:   Gt → GtE
+  Status:   SURVIVED ✗
+  Action:   Add test case to detect this mutation
+
+======================================================================
+END OF REPORT
+======================================================================

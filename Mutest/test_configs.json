@@ -1,0 +1,37 @@
+{
+    "1": {
+        "name": "Math Utils",
+        "source": "testing/simple_functions/math_utils.py",
+        "test_cmd": "pytest testing/unit_test/test_001.py -v"
+    },
+    "2": {
+        "name": "Calculator",
+        "source": "testing/simple_functions/calculator.py",
+        "test_cmd": "pytest testing/advanced_tests/test_good_coverage.py -v"
+    },
+    "3": {
+        "name": "Temperature Converter",
+        "source": "testing/simple_functions/temperature.py",
+        "test_cmd": "pytest testing/advanced_tests/test_good_coverage.py -v"
+    },
+    "4": {
+        "name": "String Utils",
+        "source": "testing/simple_functions/string_utils.py",
+        "test_cmd": "pytest testing/unit_test/test_001.py -v"
+    },
+    "5": {
+        "name": "Grade Utils",
+        "source": "testing/simple_functions/grade_utils.py",
+        "test_cmd": "pytest testing/unit_test/test_001.py -v"
+    },
+    "6": {
+        "name": "Loop Functions",
+        "source": "testing/simple_functions/loop_functions.py",
+        "test_cmd": "pytest testing/advanced_tests/test_timeout_loops.py -v"
+    },
+    "8": {
+        "name": "Weak Test",
+        "source": "testing/advanced_tests/test_weak_coverage.py",
+        "test_cmd": "pytest testing/advanced_tests/test_weak_coverage.py -v"
+    }
+}
