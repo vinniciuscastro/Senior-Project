@@ -4,6 +4,7 @@ Guides users through selecting tests and running mutation analysis
 """
 import os
 import sys
+import json
 from pathlib import Path
 from mutest001 import MutantGenerator, MutationTestExecutor
 from report import generate_text_report, generate_html_report, generate_json_report
@@ -49,6 +50,20 @@ TEST_CONFIGS = {
 }
 
 
+def load_saved_configs():
+    """Load test configurations from JSON file if it exists"""
+    config_file = 'test_configs.json'
+    if os.path.exists(config_file):
+        try:
+            with open(config_file, 'r') as f:
+                saved_configs = json.load(f)
+                # Merge saved configs with default configs
+                TEST_CONFIGS.update(saved_configs)
+                print(f"✓ Loaded {len(saved_configs)} saved test configurations")
+        except Exception as e:
+            print(f"Warning: Could not load saved configurations: {e}")
+
+
 def print_header():
     """Print welcome header"""
     print("\n" + "=" * 70)
@@ -57,28 +72,72 @@ def print_header():
     print()
 
 
+def show_main_menu():
+    """Display main menu"""
+    print("=" * 70)
+    print("  MAIN MENU")
+    print("=" * 70)
+    print(f"\n  Total Configured Tests: {len(TEST_CONFIGS)}")
+    print()
+    print("  [1] See all tests and run")
+    print("  [2] Add new test")
+    print("  [3] Remove test")
+    print("  [q] Quit")
+    print()
+    print("=" * 70)
+
+
 def show_available_tests():
-    """Display all available tests"""
-    print("Available Tests:")
-    print("-" * 70)
-    for key, config in TEST_CONFIGS.items():
-        print(f"  [{key}] {config['name']}")
-        print(f"      Source: {config['source']}")
-        print(f"      Tests:  {config['test_cmd']}")
+    """Display all available tests with enhanced formatting"""
+    print("\n" + "=" * 70)
+    print("  ALL CONFIGURED TESTS")
+    print("=" * 70)
+    print(f"\n  Total Tests: {len(TEST_CONFIGS)}")
+    print()
+
+    if not TEST_CONFIGS:
+        print("  No tests configured yet!")
+        print("  Use option [2] from main menu to add a test.")
         print()
-    print(f"  [all] Run ALL tests")
-    print(f"  [q] Quit")
-    print("-" * 70)
+    else:
+        for key, config in TEST_CONFIGS.items():
+            print(f"  [{key}] {config['name']}")
+            print(f"      Source: {config['source']}")
+            print(f"      Tests:  {config['test_cmd']}")
+            print()
+
+    print("=" * 70)
+    print("  RUN OPTIONS")
+    print("=" * 70)
+    print(f"  [all]   Run ALL tests")
+    print(f"  [back]  Return to main menu")
+    print()
+    print("  Or enter a test number to run that specific test")
+    print("=" * 70)
 
 
-def get_test_selection():
-    """Prompt user to select a test"""
+def get_main_menu_choice():
+    """Get user choice from main menu"""
     while True:
-        choice = input("\nSelect a test to run (enter number, 'all', or 'q'): ").strip().lower()
+        choice = input("\nSelect an option: ").strip().lower()
 
         if choice == 'q':
             print("\nExiting Mutest. Goodbye!")
             sys.exit(0)
+
+        if choice in ['1', '2', '3']:
+            return choice
+
+        print(f"Invalid choice. Please enter 1, 2, 3, or q.")
+
+
+def get_test_selection():
+    """Prompt user to select a test from the tests menu"""
+    while True:
+        choice = input("\nSelect a test to run (number, 'all', or 'back'): ").strip().lower()
+
+        if choice == 'back':
+            return 'back'
 
         if choice == 'all':
             return 'all'
@@ -86,7 +145,134 @@ def get_test_selection():
         if choice in TEST_CONFIGS:
             return choice
 
-        print(f"Invalid choice '{choice}'. Please enter a valid number, 'all', or 'q'.")
+        print(f"Invalid choice '{choice}'. Please enter a valid test number, 'all', or 'back'.")
+
+
+def add_new_test():
+    """Interactive function to add a new test configuration"""
+    print("\n" + "=" * 70)
+    print("  ADD NEW TEST CONFIGURATION")
+    print("=" * 70)
+    print()
+
+    # Get test name
+    while True:
+        test_name = input("Enter test name (e.g., 'My Function Tests'): ").strip()
+        if test_name:
+            break
+        print("Test name cannot be empty. Please try again.")
+
+    # Get source file path
+    while True:
+        source_file = input("Enter source file path (e.g., 'testing/simple_functions/my_file.py'): ").strip()
+        if source_file:
+            # Check if file exists
+            if os.path.exists(source_file):
+                break
+            else:
+                print(f"Warning: File '{source_file}' not found.")
+                confirm = input("Continue anyway? (y/n): ").strip().lower()
+                if confirm == 'y':
+                    break
+        else:
+            print("Source file path cannot be empty. Please try again.")
+
+    # Get test command
+    while True:
+        test_cmd = input("Enter test command (e.g., 'pytest tests/test_my_file.py -v'): ").strip()
+        if test_cmd:
+            break
+        print("Test command cannot be empty. Please try again.")
+
+    # Find next available key number
+    existing_keys = [int(k) for k in TEST_CONFIGS.keys() if k.isdigit()]
+    next_key = str(max(existing_keys) + 1) if existing_keys else "1"
+
+    # Add to TEST_CONFIGS
+    TEST_CONFIGS[next_key] = {
+        "name": test_name,
+        "source": source_file,
+        "test_cmd": test_cmd
+    }
+
+    # Save to JSON file for persistence
+    try:
+        with open('test_configs.json', 'w') as f:
+            json.dump(TEST_CONFIGS, f, indent=4)
+        print(f"\n✓ Test configuration saved!")
+    except Exception as e:
+        print(f"\nWarning: Could not save to file: {e}")
+        print("Configuration added for this session only.")
+
+    print()
+    print("=" * 70)
+    print(f"  NEW TEST ADDED: [{next_key}] {test_name}")
+    print("=" * 70)
+    print(f"  Source: {source_file}")
+    print(f"  Tests:  {test_cmd}")
+    print("=" * 70)
+    print()
+
+    return next_key
+
+
+def remove_test():
+    """Interactive function to remove a test configuration"""
+    print("\n" + "=" * 70)
+    print("  REMOVE TEST CONFIGURATION")
+    print("=" * 70)
+    print()
+
+    if not TEST_CONFIGS:
+        print("  No tests configured. Nothing to remove!")
+        print()
+        input("Press Enter to return to main menu...")
+        return
+
+    # Show all tests
+    print("  Current Tests:")
+    print()
+    for key, config in TEST_CONFIGS.items():
+        print(f"  [{key}] {config['name']}")
+        print(f"      Source: {config['source']}")
+        print()
+
+    print("=" * 70)
+    print()
+
+    # Get test to remove
+    while True:
+        choice = input("Enter test number to remove (or 'back' to cancel): ").strip().lower()
+
+        if choice == 'back':
+            print("\nCancelled. Returning to main menu...")
+            return
+
+        if choice in TEST_CONFIGS:
+            # Confirm deletion
+            test_name = TEST_CONFIGS[choice]['name']
+            confirm = input(f"\nAre you sure you want to remove '{test_name}'? (y/n): ").strip().lower()
+
+            if confirm == 'y':
+                removed_test = TEST_CONFIGS.pop(choice)
+
+                # Save updated configs
+                try:
+                    with open('test_configs.json', 'w') as f:
+                        json.dump(TEST_CONFIGS, f, indent=4)
+                    print(f"\n✓ Test '{test_name}' removed successfully!")
+                except Exception as e:
+                    print(f"\nWarning: Could not save changes: {e}")
+                    print("Test removed for this session only.")
+
+                print()
+                input("Press Enter to return to main menu...")
+                return
+            else:
+                print("\nCancelled. Test not removed.")
+                return
+
+        print(f"Invalid test number. Please try again.")
 
 
 def get_report_format():
@@ -205,13 +391,22 @@ def generate_reports(results, report_format, source_file, test_command, test_nam
         print(f"  ✓ JSON report: {output_file}")
 
 
-def main():
-    """Main interactive function"""
-    print_header()
+def run_tests_menu():
+    """Show tests and handle test running"""
     show_available_tests()
 
-    # Get user selections
+    if not TEST_CONFIGS:
+        input("\nPress Enter to return to main menu...")
+        return
+
+    # Get test selection
     test_choice = get_test_selection()
+
+    # Handle back to main menu
+    if test_choice == 'back':
+        return
+
+    # Get report format
     report_format = get_report_format()
 
     print("\n" + "=" * 70)
@@ -278,10 +473,68 @@ def main():
     print("\nMutation testing complete!")
     print("=" * 70)
     print()
+    input("Press Enter to return to main menu...")
+
+
+def main():
+    """Main function with menu loop"""
+    while True:
+        print_header()
+        show_main_menu()
+
+        choice = get_main_menu_choice()
+
+        if choice == '1':
+            # See all tests and run
+            run_tests_menu()
+
+        elif choice == '2':
+            # Add new test
+            new_test_key = add_new_test()
+
+            # Ask if user wants to run the new test now
+            run_now = input("Would you like to run this test now? (y/n): ").strip().lower()
+            if run_now == 'y':
+                # Get report format
+                report_format = get_report_format()
+
+                print("\n" + "=" * 70)
+                print("Starting Mutation Testing...")
+                print("=" * 70)
+
+                # Run the new test
+                config = TEST_CONFIGS[new_test_key]
+                results = run_mutation_test(
+                    config['source'],
+                    config['test_cmd'],
+                    config['name']
+                )
+
+                if results:
+                    generate_reports(
+                        results,
+                        report_format,
+                        config['source'],
+                        config['test_cmd'],
+                        config['name']
+                    )
+
+                print("\nMutation testing complete!")
+                print("=" * 70)
+                input("\nPress Enter to return to main menu...")
+            else:
+                print("\nTest saved. Returning to main menu...")
+                input("Press Enter to continue...")
+
+        elif choice == '3':
+            # Remove test
+            remove_test()
 
 
 if __name__ == "__main__":
     try:
+        # Load saved configurations on startup
+        load_saved_configs()
         main()
     except KeyboardInterrupt:
         print("\n\nInterrupted by user. Exiting...")
