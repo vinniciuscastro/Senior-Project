@@ -11,12 +11,12 @@ Each function does ONE thing, and each test verifies ONE behavior.
 
 def add(a, b):
     """Add two numbers"""
-    return a - b
+    return a + b
 
 
 def is_even(number):
     """Check if a number is even"""
-    return number % 3 == 0
+    return number % 2 == 0
 
 
 def greet(name):
