@@ -29,8 +29,18 @@
         "source": "testing/simple_functions/loop_functions.py",
         "test_cmd": "pytest testing/advanced_tests/test_timeout_loops.py -v"
     },
+    "7": {
+        "name": "Recursive Functions",
+        "source": "testing/simple_functions/recursive_functions.py",
+        "test_cmd": "pytest testing/advanced_tests/test_timeout.py -v"
+    },
     "8": {
         "name": "Weak Test",
+        "source": "testing/advanced_tests/test_weak_coverage.py",
+        "test_cmd": "pytest testing/advanced_tests/test_weak_coverage.py -v"
+    },
+    "9": {
+        "name": "Weak Test Covarage",
         "source": "testing/advanced_tests/test_weak_coverage.py",
         "test_cmd": "pytest testing/advanced_tests/test_weak_coverage.py -v"
     }

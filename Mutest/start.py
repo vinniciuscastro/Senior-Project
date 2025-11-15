@@ -349,10 +349,10 @@ def run_mutation_test(source_file, test_command, test_name):
     print(f"Timeout:          {results['timeout_count']}")
     print(f"\nMutation Score:   {results['mutation_score']:.2f}%")
 
-    if results['mutation_score'] >= 80:
+    if results['mutation_score'] >= 95:
         print("Status:           EXCELLENT test coverage!")
-    elif results['mutation_score'] >= 60:
-        print("Status:           GOOD test coverage")
+    elif results['mutation_score'] >= 80:
+        print("Status:           GOOD test coverage - some improvements possible")
     else:
         print("Status:           WEAK test coverage - consider adding more tests")
 
