@@ -43,5 +43,10 @@
         "name": "Weak Test Covarage",
         "source": "testing/advanced_tests/test_weak_coverage.py",
         "test_cmd": "pytest testing/advanced_tests/test_weak_coverage.py -v"
+    },
+    "10": {
+        "name": "Weak Corevage",
+        "source": "testing/advanced_tests/test_weak_coverage.py",
+        "test_cmd": "pytest testing/advanced_tests/test_weak_coverage.py -v"
     }
 }
