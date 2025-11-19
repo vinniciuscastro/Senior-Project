@@ -100,13 +100,13 @@ def generate_html_report(results, output_file, source_file, test_command):
     score = results['mutation_score']
 
     # Determine score color
-    if score >= 80:
+    if score >= 97:
         score_class = "excellent"
         score_label = "EXCELLENT"
-    elif score >= 60:
+    elif score >= 90:
         score_class = "good"
         score_label = "GOOD"
-    elif score >= 40:
+    elif score >= 80:
         score_class = "fair"
         score_label = "FAIR"
     else:

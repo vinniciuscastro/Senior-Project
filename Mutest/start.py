@@ -10,58 +10,26 @@ from mutest001 import MutantGenerator, MutationTestExecutor
 from report import generate_text_report, generate_html_report, generate_json_report
 
 
-# Test configurations: maps source files to their test commands
-TEST_CONFIGS = {
-    "1": {
-        "name": "Math Utils",
-        "source": "testing/simple_functions/math_utils.py",
-        "test_cmd": "pytest testing/unit_test/test_001.py -v"
-    },
-    "2": {
-        "name": "Calculator",
-        "source": "testing/simple_functions/calculator.py",
-        "test_cmd": "pytest testing/advanced_tests/test_good_coverage.py -v"
-    },
-    "3": {
-        "name": "Temperature Converter",
-        "source": "testing/simple_functions/temperature.py",
-        "test_cmd": "pytest testing/advanced_tests/test_good_coverage.py -v"
-    },
-    "4": {
-        "name": "String Utils",
-        "source": "testing/simple_functions/string_utils.py",
-        "test_cmd": "pytest testing/unit_test/test_001.py -v"
-    },
-    "5": {
-        "name": "Grade Utils",
-        "source": "testing/simple_functions/grade_utils.py",
-        "test_cmd": "pytest testing/unit_test/test_001.py -v"
-    },
-    "6": {
-        "name": "Loop Functions",
-        "source": "testing/simple_functions/loop_functions.py",
-        "test_cmd": "pytest testing/advanced_tests/test_timeout_loops.py -v"
-    },
-    "7": {
-        "name": "Recursive Functions",
-        "source": "testing/simple_functions/recursive_functions.py",
-        "test_cmd": "pytest testing/advanced_tests/test_timeout.py -v"
-    }
-}
+# Test configurations: loaded from test_config.json
+TEST_CONFIGS = {}
 
 
 def load_saved_configs():
-    """Load test configurations from JSON file if it exists"""
-    config_file = 'test_configs.json'
+    """Load test configurations from JSON file"""
+    config_file = 'test_config.json'
+    global TEST_CONFIGS
+
     if os.path.exists(config_file):
         try:
             with open(config_file, 'r') as f:
-                saved_configs = json.load(f)
-                # Merge saved configs with default configs
-                TEST_CONFIGS.update(saved_configs)
-                print(f"✓ Loaded {len(saved_configs)} saved test configurations")
+                TEST_CONFIGS = json.load(f)
+                print(f"✓ Loaded {len(TEST_CONFIGS)} test configurations from {config_file}")
         except Exception as e:
-            print(f"Warning: Could not load saved configurations: {e}")
+            print(f"Warning: Could not load configurations from {config_file}: {e}")
+            print("Starting with empty configuration. Use option [2] to add tests.")
+    else:
+        print(f"Note: {config_file} not found. Starting with empty configuration.")
+        print("Use option [2] from the main menu to add your first test.")
 
 
 def print_header():
@@ -197,9 +165,9 @@ def add_new_test():
 
     # Save to JSON file for persistence
     try:
-        with open('test_configs.json', 'w') as f:
+        with open('test_config.json', 'w') as f:
             json.dump(TEST_CONFIGS, f, indent=4)
-        print(f"\n✓ Test configuration saved!")
+        print(f"\n✓ Test configuration saved to test_config.json!")
     except Exception as e:
         print(f"\nWarning: Could not save to file: {e}")
         print("Configuration added for this session only.")
@@ -258,7 +226,7 @@ def remove_test():
 
                 # Save updated configs
                 try:
-                    with open('test_configs.json', 'w') as f:
+                    with open('test_config.json', 'w') as f:
                         json.dump(TEST_CONFIGS, f, indent=4)
                     print(f"\n✓ Test '{test_name}' removed successfully!")
                 except Exception as e:
@@ -349,12 +317,14 @@ def run_mutation_test(source_file, test_command, test_name):
     print(f"Timeout:          {results['timeout_count']}")
     print(f"\nMutation Score:   {results['mutation_score']:.2f}%")
 
-    if results['mutation_score'] >= 95:
+    if results['mutation_score'] >= 97:
         print("Status:           EXCELLENT test coverage!")
+    elif results['mutation_score'] >= 90:
+        print("Status:           GOOD test coverage - minor improvements possible")
     elif results['mutation_score'] >= 80:
-        print("Status:           GOOD test coverage - some improvements possible")
+        print("Status:           FAIR test coverage - some improvements needed")
     else:
-        print("Status:           WEAK test coverage - consider adding more tests")
+        print("Status:           POOR test coverage - consider adding more tests")
 
     print("=" * 70)
 
