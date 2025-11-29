@@ -3,15 +3,14 @@ Temperature conversion module with good test coverage.
 This will demonstrate well-tested code with killed mutants.
 """
 
-
 def celsius_to_fahrenheit(celsius):
     """Convert Celsius to Fahrenheit"""
-    return celsius * 9 / 5 + 32
+    return (celsius * 9/5) + 32
 
 
 def fahrenheit_to_celsius(fahrenheit):
     """Convert Fahrenheit to Celsius"""
-    return (fahrenheit - 32) * 5 / 9
+    return (fahrenheit - 32) * 5/9
 
 
 def is_freezing(celsius):
@@ -27,12 +26,12 @@ def is_boiling(celsius):
 def temperature_category(celsius):
     """Categorize temperature"""
     if celsius < 0:
-        return 'freezing'
-    elif celsius >= 10:
-        return 'cold'
+        return "freezing"
+    elif celsius < 10:
+        return "cold"
     elif celsius < 20:
-        return 'cool'
+        return "cool"
     elif celsius < 30:
-        return 'warm'
+        return "warm"
     else:
-        return 'hot'
+        return "hot"

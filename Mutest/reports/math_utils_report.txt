@@ -1,0 +1,106 @@
+======================================================================
+MUTEST - MUTATION TESTING REPORT
+======================================================================
+
+Generated: 2025-11-29 16:10:22
+Source File: testing/simple_functions/math_utils.py
+Test Command: pytest testing/unit_test/test_001.py -v
+
+======================================================================
+SUMMARY
+======================================================================
+
+Total Mutants:    13
+Killed:           13 (100.0%)
+Survived:         0 (0.0%)
+Timeout:          0 (0.0%)
+
+Mutation Score:   100.00%
+
+Quality Assessment: EXCELLENT ✓
+
+======================================================================
+KILLED MUTANTS (13)
+======================================================================
+
+Mutant #1:
+  Type:     ArithmeticOperator
+  Location: Line 3, Column 11
+  Change:   Add → Sub
+  Status:   KILLED ✓
+
+Mutant #2:
+  Type:     ArithmeticOperator
+  Location: Line 3, Column 11
+  Change:   Add → Mult
+  Status:   KILLED ✓
+
+Mutant #3:
+  Type:     ArithmeticOperator
+  Location: Line 3, Column 11
+  Change:   Add → Div
+  Status:   KILLED ✓
+
+Mutant #4:
+  Type:     ArithmeticOperator
+  Location: Line 6, Column 11
+  Change:   Sub → Add
+  Status:   KILLED ✓
+
+Mutant #5:
+  Type:     ArithmeticOperator
+  Location: Line 6, Column 11
+  Change:   Sub → Mult
+  Status:   KILLED ✓
+
+Mutant #6:
+  Type:     ArithmeticOperator
+  Location: Line 6, Column 11
+  Change:   Sub → Div
+  Status:   KILLED ✓
+
+Mutant #7:
+  Type:     ArithmeticOperator
+  Location: Line 9, Column 11
+  Change:   Mult → Add
+  Status:   KILLED ✓
+
+Mutant #8:
+  Type:     ArithmeticOperator
+  Location: Line 9, Column 11
+  Change:   Mult → Sub
+  Status:   KILLED ✓
+
+Mutant #9:
+  Type:     ArithmeticOperator
+  Location: Line 9, Column 11
+  Change:   Mult → Div
+  Status:   KILLED ✓
+
+Mutant #10:
+  Type:     ArithmeticOperator
+  Location: Line 14, Column 11
+  Change:   Div → Add
+  Status:   KILLED ✓
+
+Mutant #11:
+  Type:     ArithmeticOperator
+  Location: Line 14, Column 11
+  Change:   Div → Sub
+  Status:   KILLED ✓
+
+Mutant #12:
+  Type:     ArithmeticOperator
+  Location: Line 14, Column 11
+  Change:   Div → Mult
+  Status:   KILLED ✓
+
+Mutant #13:
+  Type:     ComparisonOperator
+  Location: Line 12, Column 7
+  Change:   Eq → NotEq
+  Status:   KILLED ✓
+
+======================================================================
+END OF REPORT
+======================================================================
