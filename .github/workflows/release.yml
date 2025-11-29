@@ -59,18 +59,4 @@ jobs:
 
             See the full changelog below for details.
 
-      - name: Publish to Test PyPI (optional)
-        if: false  # Set to true when ready to publish
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
-        run: |
-          python -m twine upload --repository testpypi dist/*
 
-      - name: Publish to PyPI (optional)
-        if: false  # Set to true when ready to publish
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-        run: |
-          python -m twine upload dist/*
