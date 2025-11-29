@@ -1,0 +1,244 @@
+======================================================================
+MUTEST - MUTATION TESTING REPORT
+======================================================================
+
+Generated: 2025-11-29 16:12:40
+Source File: testing/simple_functions/temperature.py
+Test Command: pytest testing/advanced_tests/test_good_coverage.py -v
+
+======================================================================
+SUMMARY
+======================================================================
+
+Total Mutants:    36
+Killed:           36 (100.0%)
+Survived:         0 (0.0%)
+Timeout:          0 (0.0%)
+
+Mutation Score:   100.00%
+
+Quality Assessment: EXCELLENT ✓
+
+======================================================================
+KILLED MUTANTS (36)
+======================================================================
+
+Mutant #1:
+  Type:     ArithmeticOperator
+  Location: Line 8, Column 12
+  Change:   Mult → Add
+  Status:   KILLED ✓
+
+Mutant #2:
+  Type:     ArithmeticOperator
+  Location: Line 8, Column 12
+  Change:   Mult → Sub
+  Status:   KILLED ✓
+
+Mutant #3:
+  Type:     ArithmeticOperator
+  Location: Line 8, Column 12
+  Change:   Mult → Div
+  Status:   KILLED ✓
+
+Mutant #4:
+  Type:     ArithmeticOperator
+  Location: Line 8, Column 12
+  Change:   Div → Add
+  Status:   KILLED ✓
+
+Mutant #5:
+  Type:     ArithmeticOperator
+  Location: Line 8, Column 12
+  Change:   Div → Sub
+  Status:   KILLED ✓
+
+Mutant #6:
+  Type:     ArithmeticOperator
+  Location: Line 8, Column 12
+  Change:   Div → Mult
+  Status:   KILLED ✓
+
+Mutant #7:
+  Type:     ArithmeticOperator
+  Location: Line 8, Column 11
+  Change:   Add → Sub
+  Status:   KILLED ✓
+
+Mutant #8:
+  Type:     ArithmeticOperator
+  Location: Line 8, Column 11
+  Change:   Add → Mult
+  Status:   KILLED ✓
+
+Mutant #9:
+  Type:     ArithmeticOperator
+  Location: Line 8, Column 11
+  Change:   Add → Div
+  Status:   KILLED ✓
+
+Mutant #10:
+  Type:     ArithmeticOperator
+  Location: Line 13, Column 12
+  Change:   Sub → Add
+  Status:   KILLED ✓
+
+Mutant #11:
+  Type:     ArithmeticOperator
+  Location: Line 13, Column 12
+  Change:   Sub → Mult
+  Status:   KILLED ✓
+
+Mutant #12:
+  Type:     ArithmeticOperator
+  Location: Line 13, Column 12
+  Change:   Sub → Div
+  Status:   KILLED ✓
+
+Mutant #13:
+  Type:     ArithmeticOperator
+  Location: Line 13, Column 11
+  Change:   Mult → Add
+  Status:   KILLED ✓
+
+Mutant #14:
+  Type:     ArithmeticOperator
+  Location: Line 13, Column 11
+  Change:   Mult → Sub
+  Status:   KILLED ✓
+
+Mutant #15:
+  Type:     ArithmeticOperator
+  Location: Line 13, Column 11
+  Change:   Mult → Div
+  Status:   KILLED ✓
+
+Mutant #16:
+  Type:     ArithmeticOperator
+  Location: Line 13, Column 11
+  Change:   Div → Add
+  Status:   KILLED ✓
+
+Mutant #17:
+  Type:     ArithmeticOperator
+  Location: Line 13, Column 11
+  Change:   Div → Sub
+  Status:   KILLED ✓
+
+Mutant #18:
+  Type:     ArithmeticOperator
+  Location: Line 13, Column 11
+  Change:   Div → Mult
+  Status:   KILLED ✓
+
+Mutant #19:
+  Type:     ComparisonOperator
+  Location: Line 18, Column 11
+  Change:   LtE → Lt
+  Status:   KILLED ✓
+
+Mutant #20:
+  Type:     ComparisonOperator
+  Location: Line 18, Column 11
+  Change:   LtE → Gt
+  Status:   KILLED ✓
+
+Mutant #21:
+  Type:     ComparisonOperator
+  Location: Line 18, Column 11
+  Change:   LtE → GtE
+  Status:   KILLED ✓
+
+Mutant #22:
+  Type:     ComparisonOperator
+  Location: Line 23, Column 11
+  Change:   GtE → Gt
+  Status:   KILLED ✓
+
+Mutant #23:
+  Type:     ComparisonOperator
+  Location: Line 23, Column 11
+  Change:   GtE → Lt
+  Status:   KILLED ✓
+
+Mutant #24:
+  Type:     ComparisonOperator
+  Location: Line 23, Column 11
+  Change:   GtE → LtE
+  Status:   KILLED ✓
+
+Mutant #25:
+  Type:     ComparisonOperator
+  Location: Line 28, Column 7
+  Change:   Lt → LtE
+  Status:   KILLED ✓
+
+Mutant #26:
+  Type:     ComparisonOperator
+  Location: Line 28, Column 7
+  Change:   Lt → Gt
+  Status:   KILLED ✓
+
+Mutant #27:
+  Type:     ComparisonOperator
+  Location: Line 28, Column 7
+  Change:   Lt → GtE
+  Status:   KILLED ✓
+
+Mutant #28:
+  Type:     ComparisonOperator
+  Location: Line 30, Column 9
+  Change:   Lt → LtE
+  Status:   KILLED ✓
+
+Mutant #29:
+  Type:     ComparisonOperator
+  Location: Line 30, Column 9
+  Change:   Lt → Gt
+  Status:   KILLED ✓
+
+Mutant #30:
+  Type:     ComparisonOperator
+  Location: Line 30, Column 9
+  Change:   Lt → GtE
+  Status:   KILLED ✓
+
+Mutant #31:
+  Type:     ComparisonOperator
+  Location: Line 32, Column 9
+  Change:   Lt → LtE
+  Status:   KILLED ✓
+
+Mutant #32:
+  Type:     ComparisonOperator
+  Location: Line 32, Column 9
+  Change:   Lt → Gt
+  Status:   KILLED ✓
+
+Mutant #33:
+  Type:     ComparisonOperator
+  Location: Line 32, Column 9
+  Change:   Lt → GtE
+  Status:   KILLED ✓
+
+Mutant #34:
+  Type:     ComparisonOperator
+  Location: Line 34, Column 9
+  Change:   Lt → LtE
+  Status:   KILLED ✓
+
+Mutant #35:
+  Type:     ComparisonOperator
+  Location: Line 34, Column 9
+  Change:   Lt → Gt
+  Status:   KILLED ✓
+
+Mutant #36:
+  Type:     ComparisonOperator
+  Location: Line 34, Column 9
+  Change:   Lt → GtE
+  Status:   KILLED ✓
+
+======================================================================
+END OF REPORT
+======================================================================

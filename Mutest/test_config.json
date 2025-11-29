@@ -10,21 +10,16 @@
         "test_cmd": "pytest testing/advanced_tests/test_good_coverage.py -v"
     },
     "3": {
-        "name": "Temperature Converter",
-        "source": "testing/simple_functions/temperature.py",
-        "test_cmd": "pytest testing/advanced_tests/test_good_coverage.py -v"
-    },
-    "4": {
         "name": "String Utils",
         "source": "testing/simple_functions/string_utils.py",
         "test_cmd": "pytest testing/unit_test/test_001.py -v"
     },
-    "5": {
+    "4": {
         "name": "Grade Utils",
         "source": "testing/simple_functions/grade_utils.py",
         "test_cmd": "pytest testing/unit_test/test_001.py -v"
     },
-    "6": {
+    "5": {
         "name": "Weak Test Covarage",
         "source": "testing/advanced_tests/test_weak_coverage.py",
         "test_cmd": "pytest testing/advanced_tests/test_weak_coverage.py -v"

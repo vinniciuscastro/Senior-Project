@@ -1,0 +1,111 @@
+======================================================================
+MUTEST - MUTATION TESTING REPORT
+======================================================================
+
+Generated: 2025-11-29 16:13:13
+Source File: testing/simple_functions/grade_utils.py
+Test Command: pytest testing/unit_test/test_001.py -v
+
+======================================================================
+SUMMARY
+======================================================================
+
+Total Mutants:    12
+Killed:           8 (66.7%)
+Survived:         4 (33.3%)
+Timeout:          0 (0.0%)
+
+Mutation Score:   66.67%
+
+Quality Assessment: POOR ✗
+
+======================================================================
+KILLED MUTANTS (8)
+======================================================================
+
+Mutant #2:
+  Type:     ComparisonOperator
+  Location: Line 4, Column 7
+  Change:   GtE → Lt
+  Status:   KILLED ✓
+
+Mutant #3:
+  Type:     ComparisonOperator
+  Location: Line 4, Column 7
+  Change:   GtE → LtE
+  Status:   KILLED ✓
+
+Mutant #5:
+  Type:     ComparisonOperator
+  Location: Line 6, Column 9
+  Change:   GtE → Lt
+  Status:   KILLED ✓
+
+Mutant #6:
+  Type:     ComparisonOperator
+  Location: Line 6, Column 9
+  Change:   GtE → LtE
+  Status:   KILLED ✓
+
+Mutant #8:
+  Type:     ComparisonOperator
+  Location: Line 8, Column 9
+  Change:   GtE → Lt
+  Status:   KILLED ✓
+
+Mutant #9:
+  Type:     ComparisonOperator
+  Location: Line 8, Column 9
+  Change:   GtE → LtE
+  Status:   KILLED ✓
+
+Mutant #11:
+  Type:     ComparisonOperator
+  Location: Line 10, Column 9
+  Change:   GtE → Lt
+  Status:   KILLED ✓
+
+Mutant #12:
+  Type:     ComparisonOperator
+  Location: Line 10, Column 9
+  Change:   GtE → LtE
+  Status:   KILLED ✓
+
+======================================================================
+SURVIVED MUTANTS (4) - ACTION NEEDED!
+======================================================================
+
+These mutants were not detected by your tests. Consider adding
+test cases to cover these scenarios:
+
+Mutant #1:
+  Type:     ComparisonOperator
+  Location: Line 4, Column 7
+  Change:   GtE → Gt
+  Status:   SURVIVED ✗
+  Action:   Add test case to detect this mutation
+
+Mutant #4:
+  Type:     ComparisonOperator
+  Location: Line 6, Column 9
+  Change:   GtE → Gt
+  Status:   SURVIVED ✗
+  Action:   Add test case to detect this mutation
+
+Mutant #7:
+  Type:     ComparisonOperator
+  Location: Line 8, Column 9
+  Change:   GtE → Gt
+  Status:   SURVIVED ✗
+  Action:   Add test case to detect this mutation
+
+Mutant #10:
+  Type:     ComparisonOperator
+  Location: Line 10, Column 9
+  Change:   GtE → Gt
+  Status:   SURVIVED ✗
+  Action:   Add test case to detect this mutation
+
+======================================================================
+END OF REPORT
+======================================================================
