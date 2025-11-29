@@ -9,15 +9,18 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12']
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: |
@@ -28,15 +31,30 @@ jobs:
       - name: Add Mutest folder to PYTHONPATH
         run: echo "PYTHONPATH=$PWD/Mutest" >> $GITHUB_ENV
 
-      - name: Run all tests with timeout
+      - name: Run tests with coverage
         run: |
-          echo "Running pytest in verbose mode with timeout..."
+          echo "Running pytest with coverage on Python ${{ matrix.python-version }}..."
           pytest Mutest/testing -vv --maxfail=1 --disable-warnings \
-          --junit-xml=test-results.xml --timeout=10
+          --cov=Mutest --cov-report=xml --cov-report=html --cov-report=term \
+          --junit-xml=test-results-${{ matrix.python-version }}.xml --timeout=10
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+          flags: python-${{ matrix.python-version }}
+          fail_ci_if_error: false
 
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
-          path: test-results.xml
+          name: test-results-${{ matrix.python-version }}
+          path: test-results-${{ matrix.python-version }}.xml
+
+      - name: Upload coverage HTML report
+        if: matrix.python-version == '3.11'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: htmlcov/
