@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutest Report - testing/advanced_tests/test_weak_coverage.py</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .meta-info {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .meta-info div {
+            margin: 0.5rem 0;
+        }
+
+        .meta-info strong {
+            display: inline-block;
+            width: 150px;
+            color: #495057;
+        }
+
+        .score-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .score-value {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .score-label {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card.killed {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+
+        .stat-card.survived {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+
+        .stat-card.timeout {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #dee2e6;
+            color: #495057;
+        }
+
+        .mutant-card {
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .mutant-card.killed {
+            border-left-color: #28a745;
+        }
+
+        .mutant-card.survived {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .mutant-card.timeout {
+            border-left-color: #ffc107;
+        }
+
+        .mutant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .mutant-number {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .mutant-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .mutant-status.killed {
+            background: #28a745;
+            color: white;
+        }
+
+        .mutant-status.survived {
+            background: #dc3545;
+            color: white;
+        }
+
+        .mutant-status.timeout {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .mutant-detail {
+            margin: 0.25rem 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .mutation-change {
+            font-family: 'Courier New', monospace;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        .mutation-change .original {
+            color: #dc3545;
+            text-decoration: line-through;
+        }
+
+        .mutation-change .mutated {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧬 Mutest Report</h1>
+            <p>Mutation Testing Results</p>
+        </div>
+
+        <div class="content">
+            <div class="meta-info">
+                <div><strong>Generated:</strong> 2025-11-29 15:38:16</div>
+                <div><strong>Source File:</strong> testing/advanced_tests/test_weak_coverage.py</div>
+                <div><strong>Test Command:</strong> pytest testing/advanced_tests/test_weak_coverage.py -v</div>
+            </div>
+
+            <div class="score-card">
+                <div class="score-label">Mutation Score</div>
+                <div class="score-value">83.3%</div>
+                <div class="score-label">FAIR</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card killed">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Mutants Killed</div>
+                </div>
+                <div class="stat-card survived">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Mutants Survived</div>
+                </div>
+                <div class="stat-card timeout">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Timeouts</div>
+                </div>
+            </div>
+
+            <div class="section"><h2 class="section-title">🎯 Killed Mutants (5)</h2>
+                <div class="mutant-card killed">
+                    <div class="mutant-header">
+                        <span class="mutant-number">Mutant #1</span>
+                        <span class="mutant-status killed">KILLED</span>
+                    </div>
+                    <div class="mutant-detail"><strong>Type:</strong> ComparisonOperator</div>
+                    <div class="mutant-detail"><strong>Location:</strong> Line 17, Column 11</div>
+                    <div class="mutation-change">
+                        <span class="original">Eq</span> → <span class="mutated">NotEq</span>
+                    </div>
+                </div>
+            
+                <div class="mutant-card killed">
+                    <div class="mutant-header">
+                        <span class="mutant-number">Mutant #3</span>
+                        <span class="mutant-status killed">KILLED</span>
+                    </div>
+                    <div class="mutant-detail"><strong>Type:</strong> ComparisonOperator</div>
+                    <div class="mutant-detail"><strong>Location:</strong> Line 30, Column 11</div>
+                    <div class="mutation-change">
+                        <span class="original">Gt</span> → <span class="mutated">Lt</span>
+                    </div>
+                </div>
+            
+                <div class="mutant-card killed">
+                    <div class="mutant-header">
+                        <span class="mutant-number">Mutant #4</span>
+                        <span class="mutant-status killed">KILLED</span>
+                    </div>
+                    <div class="mutant-detail"><strong>Type:</strong> ComparisonOperator</div>
+                    <div class="mutant-detail"><strong>Location:</strong> Line 30, Column 11</div>
+                    <div class="mutation-change">
+                        <span class="original">Gt</span> → <span class="mutated">LtE</span>
+                    </div>
+                </div>
+            
+                <div class="mutant-card killed">
+                    <div class="mutant-header">
+                        <span class="mutant-number">Mutant #5</span>
+                        <span class="mutant-status killed">KILLED</span>
+                    </div>
+                    <div class="mutant-detail"><strong>Type:</strong> ComparisonOperator</div>
+                    <div class="mutant-detail"><strong>Location:</strong> Line 40, Column 11</div>
+                    <div class="mutation-change">
+                        <span class="original">Eq</span> → <span class="mutated">NotEq</span>
+                    </div>
+                </div>
+            
+                <div class="mutant-card killed">
+                    <div class="mutant-header">
+                        <span class="mutant-number">Mutant #6</span>
+                        <span class="mutant-status killed">KILLED</span>
+                    </div>
+                    <div class="mutant-detail"><strong>Type:</strong> ComparisonOperator</div>
+                    <div class="mutant-detail"><strong>Location:</strong> Line 41, Column 11</div>
+                    <div class="mutation-change">
+                        <span class="original">Eq</span> → <span class="mutated">NotEq</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section"><h2 class="section-title">⚠️ Survived Mutants (1) - Action Needed!</h2>
+                <div class="mutant-card survived">
+                    <div class="mutant-header">
+                        <span class="mutant-number">Mutant #2</span>
+                        <span class="mutant-status survived">SURVIVED</span>
+                    </div>
+                    <div class="mutant-detail"><strong>Type:</strong> ComparisonOperator</div>
+                    <div class="mutant-detail"><strong>Location:</strong> Line 30, Column 11</div>
+                    <div class="mutation-change">
+                        <span class="original">Gt</span> → <span class="mutated">GtE</span>
+                    </div>
+                    <div style="margin-top: 0.5rem; color: #721c24; font-size: 0.9rem;">
+                        ⚠️ Add test case to detect this mutation
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+
+        <div class="footer">
+            Generated by Mutest v0.0.1 • 2025-11-29 15:38:16
+        </div>
+    </div>
+</body>
+</html>
