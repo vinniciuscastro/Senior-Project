@@ -5,9 +5,9 @@
         "test_cmd": "pytest testing/unit_test/test_001.py -v"
     },
     "2": {
-        "name": "Calculator",
-        "source": "testing/simple_functions/calculator.py",
-        "test_cmd": "pytest testing/advanced_tests/test_good_coverage.py -v"
+        "name": "Temperature",
+        "source": "testing/simple_functions/temperature.py",
+        "test_cmd": "pytest testing/unit_test/test_good_coverage.py -v"
     },
     "3": {
         "name": "String Utils",
@@ -20,8 +20,33 @@
         "test_cmd": "pytest testing/unit_test/test_001.py -v"
     },
     "5": {
-        "name": "Weak Test Covarage",
-        "source": "testing/advanced_tests/test_weak_coverage.py",
-        "test_cmd": "pytest testing/advanced_tests/test_weak_coverage.py -v"
+        "name": "Calculator - Weak Coverage",
+        "source": "testing/simple_functions/calculator.py",
+        "test_cmd": "pytest testing/unit_test/test_weak_coverage.py -v"
+    },
+    "6": {
+        "name": "Temperature - Good Coverage",
+        "source": "testing/simple_functions/temperature.py",
+        "test_cmd": "pytest testing/unit_test/test_good_coverage.py -v"
+    },
+    "7": {
+        "name": "Geometry - Excellent Coverage",
+        "source": "testing/simple_functions/geometry.py",
+        "test_cmd": "pytest testing/unit_test/test_geometry_excellent.py -v"
+    },
+    "8": {
+        "name": "Statistics - Excellent Coverage",
+        "source": "testing/simple_functions/statistics.py",
+        "test_cmd": "pytest testing/unit_test/test_statistics_excellent.py -v"
+    },
+    "9": {
+        "name": "Shopping - Fair Coverage",
+        "source": "testing/simple_functions/shopping.py",
+        "test_cmd": "pytest testing/unit_test/test_shopping_fair.py -v"
+    },
+    "10": {
+        "name": "Validators - Poor Coverage",
+        "source": "testing/simple_functions/validators.py",
+        "test_cmd": "pytest testing/unit_test/test_validators_poor.py -v"
     }
 }

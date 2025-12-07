@@ -16,10 +16,9 @@ def test_celsius_to_fahrenheit():
     assert temperature.celsius_to_fahrenheit(0) == 32
     assert temperature.celsius_to_fahrenheit(100) == 212
     assert temperature.celsius_to_fahrenheit(-40) == -40
-    assert abs(temperature.celsius_to_fahrenheit(37) - 98.6) < 0.1
+    assert temperature.celsius_to_fahrenheit(37) == 98.6
 
-    # This will catch mutants that change * to /, + to -, etc.
-
+    # This will catch mutants that change -, *, / operations
 
 def test_fahrenheit_to_celsius():
     """Comprehensive test for fahrenheit to celsius conversion"""
